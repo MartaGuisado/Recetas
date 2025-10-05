@@ -1,0 +1,368 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; 
+}
+
+.layout {
+  display: grid;                        /* Activa CSS Grid */
+  grid-template-columns: 2fr 2fr 1.2fr;       /* 3 columnas: 2 parte, 2 partes, 1.2 partes */
+  grid-template-areas:                  /* Define las áreas de la página */
+    "header header header"            /* Header ocupa las 3 columnas */
+    "main  main   aside"             /* Aside en 1 columna, main en 2 */
+    "footer footer footer";          /* Footer ocupa las 3 columnas */
+  gap: 1em;                            /* Espacio entre elementos */
+  width: 100%;                        /* ✅ Asegura que el contenedor grid use el ancho completo */
+  margin: auto;                       /* centra en pantallas anchas */
+}
+
+
+header { grid-area: header; }
+main { grid-area: main; }
+footer { grid-area: footer; }
+.sidebar { grid-area: aside; }
+
+html, body {
+  width: 100%;
+  height: 100%;
+}
+
+header{
+
+  width: 100%;
+  min-height: 200px;
+  height: auto; /* Ajusta la altura automáticamente, para mantener la responsividad */
+  background-image: url('Shakshuka.webp');
+  background-blend-mode: normal;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  padding: 2rem 1rem;      /* separa del borde lateral */
+}
+
+.header-content {
+  width: 100%;
+  display: flex;
+  flex-direction: column; /*hace que el título y el subtítulo formen una columna*/
+  align-items: flex-start;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.title {
+  color: white;
+  font-size: clamp(1.5rem, 5vw, 2.5rem); /* Tamaño responsivo */
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.subtitulo{
+  color: rgb(151, 233, 128);
+  font-size: 1em;
+  font-style: italic;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  text-align: left;
+  display: block;
+  width: 100%;
+}
+
+/* Posicionar los botones abajo a la derecha */
+.nav-buttons {
+  position: absolute;
+  bottom: 1rem;   /* separación del borde inferior */
+  right: 1rem;    /* separación del borde derecho */
+  display: flex;
+  gap: 1rem;      /* espacio entre botones */
+}
+
+.button {
+  background-color: rgba(255, 255, 255, 0.8);
+  color: #333;
+  padding: 0.5em 1em;
+  border-radius: 5px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.button:hover {
+  background-color: rgba(255, 255, 255, 1);
+}
+
+/* ============================================================
+   🃏 9. TARJETAS - Sección de navegación rápida
+   ============================================================ */
+
+/* Tarjeta contenedora principal */
+.recetas {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #fafafa;              /* Fondo muy claro */
+    padding: 20px;
+    border-radius: 10px;
+    margin: 40px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08); /* Sombra más marcada */
+}
+
+/* Título centrado de la sección */
+h2.recetas {
+    margin-top: 0;
+    text-align: center;
+    margin-bottom: 1.5rem;
+    color: #4bc647;
+}
+
+/* Grid de 3 columnas para las tarjetas */
+.recetas-grid {
+    display: grid;
+    gap: 1rem;                             /* Espacio entre tarjetas */
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); 
+
+}
+
+/* ¿Qué hace repeat(3, 1fr)?
+   - repeat() evita escribir "1fr 1fr 1fr"
+   - 1fr = 1 fracción del espacio disponible
+   - 3 columnas que se reparten el espacio por igual */
+
+/* Estilo individual de cada tarjeta */
+
+.card {
+    background: #fff;
+    border: 3px groove #4bc647; /* Borde 3D */
+    border-radius: 8px;
+    padding: 1rem;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+    transition: transform 0.2s, box-shadow 0.2s; /* Animación hover */
+    
+}
+
+/* Efecto al pasar el ratón por encima */
+.card:hover {
+    transform: translateY(-3px);              /* Mueve hacia arriba */
+    box-shadow: 0 6px 14px rgba(0,0,0,0.12); /* Sombra más intensa */
+}
+
+/* ¿Qué hace transform: translateY()?
+   - translateY = mueve vertical (Y)
+   - Valor negativo = hacia arriba
+   - Crea efecto de "elevación" */
+
+.card__cabecera {
+    margin-top: 0;
+    margin-bottom: 0.5rem;
+    font-size: 1.1rem;
+    color: var(--color-base);
+}
+
+.card__contenido {
+    margin: 0;
+    font-size: 0.95rem;
+    color: #444;
+}
+
+.boton {
+  display: inline-block;
+  margin-top: 1rem; /* 🔧 Separación del texto */
+  padding: 0.5em 1em;
+  background-color: #4bc647;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  text-decoration: none;
+  font-weight: bold;
+  text-align: center;
+  transition: background-color 0.3s;
+}
+
+.card .boton:hover {
+  background-color: #3ba637;
+}
+
+.sidebar {
+  background: #ffffff;
+  border: 2px dashed #92f68f; /* Borde punteado */
+  border-radius: 10px;
+  margin: 0.8em;
+  padding: 1em;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+.sidebar h3 {
+  color: #3ba637;
+  margin-bottom: 0.5rem;
+}
+
+.btn-descarga {
+  display: inline-block;
+  background-color: #4bc647;
+  color: white;
+  padding: 0.7em 1.5em;
+  border-radius: 5px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: background 0.3s;
+}
+.btn-descarga:hover {
+  background-color: #3ba637;
+}
+
+.foto-chef {
+  width: 100%;
+  height: auto;           /* Ajusta la altura automáticamente, para mantener la responsividad */
+  border-radius: 8px
+  margin-bottom: 1rem;
+
+}
+.tarjeta-recetas {
+  display: grid;                        /* Activa CSS Grid */
+  grid-template-columns: repeat(3, 1fr);       /* 3 columnas: cada una de 1fracción */
+  gap: 0.8em;                            /* Espacio entre elementos */
+  width: 100%;                        /* ✅ Asegura que el contenedor grid use el ancho completo */
+  padding: 3em;                       /* separa del borde lateral */
+  margin: 2em;      /* 👈 centra horizontalmente */
+}
+
+.boton-receta {
+  background-color: #4bc647;
+  border: none;
+  color: white;
+  padding: 0.5em 1em;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 1rem;
+  margin-top: 0.5rem; /* 🔧 Separación del texto */
+  border-radius: 4px;
+  transition: background-color 0.3s;
+}
+
+.boton-receta:hover {
+  background-color: #3ba637;
+}
+
+.card-img-top{
+  border-radius: 8px;
+  width: 100%;             /* Ocupa todo el ancho del contenedor */
+  height: auto;           /* Ajusta la altura automáticamente, para mantener la responsividad */
+  margin-bottom: 1rem;
+  aspect-ratio: 1 / 1;     /* Mantiene proporción 1:1 (cuadrado) */
+  object-fit: cover;       /* Recorta la imagen si es necesario */
+  display: block;          /* Evita espacio debajo (por inline) */
+}
+
+.mas-populares{
+  font-family: Arial, Helvetica, sans-serif;
+  color: #4bc647;
+  text-align: left;
+  padding: 0em 0em 0em 2em;
+  text-shadow: 1px 1px 2px #92f68f;
+
+}
+
+.btn.contacta {
+  background-color: #4bc647;
+  color: white;
+  border: none;
+  display: inline-block;
+  margin-top: 1rem; /* 🔧 Separación del texto */
+  padding: 0.5em 1em;
+  border-radius: 4px;
+  text-decoration: none;
+  text-align: center;
+  transition: background-color 0.3s;
+  margin-left: 2em;
+
+}
+
+.btn.contacta:hover {
+  background-color: #3ba637;
+}
+
+footer {
+  justify-content: left;
+  text-align: left;
+  padding: 20px;
+  margin-top: 20px;
+  border-top: 5px solid #3ba637; /* Borde superior grueso */
+  color: rgb(100, 104, 101);
+  background-color: #92f68f; /* Fondo oscuro */
+  font-size: 0.9rem;
+  font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif
+}
+
+
+.mb3{
+  margin-bottom: 3rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #eee;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+
+/* 📱 RESPONSIVIDAD */
+
+/* ===== Tablets (≤1024px) ===== */
+
+@media (max-width: 1024px) {
+  .layout {
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas: 
+      "header header"
+      "main aside"
+      "footer footer";
+  }
+
+  .recetas-grid {
+    grid-template-columns: repeat(2, 1fr); /* 2 columnas */
+  }
+
+  .tarjeta-recetas {
+    grid-template-columns: repeat(2, 1fr); /* 2 columnas */
+    padding: 2em;
+  }
+}
+
+/* ===== Móviles (≤768px) ===== */
+
+@media (max-width: 768px) {
+  .layout {
+    grid-template-columns: 1fr;
+    grid-template-areas: 
+      "header"
+      "main"
+      "aside"
+      "footer";
+  }
+
+  .recetas-grid {
+    grid-template-columns: 1fr; /* 1 columna */
+  }
+
+  .tarjeta-recetas {
+    grid-template-columns: 1fr; /* 1 columna */
+    padding: 1em;
+  }
+
+  header {
+    min-height: 150px;
+    padding: 1.5rem 1rem;
+  }
+
+  .title {
+    font-size: clamp(1.2rem, 6vw, 2rem); /* Escala el título */
+  }
+
+  .subtitulo {
+    font-size: clamp(0.8rem, 4vw, 1rem); /* Escala el subtítulo */
+  }
+
+  .nav-buttons {
+    flex-direction: column; /* Botones apilados */
+    gap: 0.5rem;
+    right: 0.5rem;
+    bottom: 0.5rem;
+  }
+}
