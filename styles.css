@@ -11,7 +11,7 @@
     "header header header"            /* Header ocupa las 3 columnas */
     "main  main   aside"             /* Aside en 1 columna, main en 2 */
     "footer footer footer";          /* Footer ocupa las 3 columnas */
-  gap: 1em;                            /* Espacio entre elementos */
+  gap: 0.5em;                            /* Espacio entre elementos */
   width: 100%;                        /* ✅ Asegura que el contenedor grid use el ancho completo */
   margin: auto;                       /* centra en pantallas anchas */
 }
@@ -30,58 +30,71 @@ html, body {
 header{
 
   width: 100%;
-  min-height: 200px;
+  min-height: 120px;
   height: auto; /* Ajusta la altura automáticamente, para mantener la responsividad */
-  background-image: url('Shakshuka.webp');
-  background-blend-mode: normal;
+  background-image: url('Cabecera-web.png');
   background-size: cover;
   background-position: center;
-  background-repeat: no-repeat;
   display: flex;
-  align-items: center;
+  align-items: flex-start; /* el contenido empieza desde arriba */
   justify-content: center;
   position: relative;
-  padding: 2rem 1rem;      /* separa del borde lateral */
+  padding: 0.5em 1em; /* separa del borde lateral */
+  gap: 0.3em;      
 }
 
 .header-content {
   width: 100%;
   display: flex;
   flex-direction: column; /*hace que el título y el subtítulo formen una columna*/
-  align-items: flex-start;
-  font-family: Arial, Helvetica, sans-serif;
+  margin: 2em;
+  gap: 0.5em;
 }
 
 .title {
-  color: white;
-  font-size: clamp(1.5rem, 5vw, 2.5rem); /* Tamaño responsivo */
+  color: rgb(0, 0, 0);
+  font-size: clamp(3em, 7vw, 4em); /* Tamaño responsivo */
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  font-family: fascinate, walter turncoat;
+  text-align: left;
+  margin: 0;
+}
+
+.bottom-row {
+  display: flex;
+  justify-content: space-between; /* subtítulo izquierda, botones derecha */
+  align-items: center;           /* alineados verticalmente */
+  width: 100%;
+  text-align: center;
+
 }
 
 .subtitulo{
-  color: rgb(151, 233, 128);
-  font-size: 1em;
-  font-style: italic;
+  color: rgb(0, 0, 0);
+  font-size: 2.5em;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
-  text-align: left;
-  display: block;
+  font-family: Just Me Again Down Here, montez;
   width: 100%;
+  margin: 0;
+  text-align: left;
 }
 
 /* Posicionar los botones abajo a la derecha */
 .nav-buttons {
-  position: absolute;
-  bottom: 1rem;   /* separación del borde inferior */
+  bottom: 5em;   /* separación del borde inferior */
   right: 1rem;    /* separación del borde derecho */
   display: flex;
   gap: 1rem;      /* espacio entre botones */
+  transition: color 0.3s ease;
+  flex-shrink: 0; /* ❌ Evita que los botones se encojan */
+  margin-left: auto;
 }
 
 .button {
-  background-color: rgba(255, 255, 255, 0.8);
-  color: #333;
+  background-color: rgba(19, 122, 29, 0.8);
+  color: #bcffbf;
   padding: 0.5em 1em;
+  white-space: nowrap;
   border-radius: 5px;
   text-decoration: none;
   font-weight: bold;
@@ -90,6 +103,7 @@ header{
 
 .button:hover {
   background-color: rgba(255, 255, 255, 1);
+  color: #ffd700; 
 }
 
 /* ============================================================
@@ -98,12 +112,13 @@ header{
 
 /* Tarjeta contenedora principal */
 .recetas {
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: poppins;
     background: #fafafa;              /* Fondo muy claro */
     padding: 20px;
     border-radius: 10px;
     margin: 40px;
     box-shadow: 0 4px 12px rgba(0,0,0,0.08); /* Sombra más marcada */
+    margin-top: 0;
 }
 
 /* Título centrado de la sección */
@@ -112,6 +127,7 @@ h2.recetas {
     text-align: center;
     margin-bottom: 1.5rem;
     color: #4bc647;
+    
 }
 
 /* Grid de 3 columnas para las tarjetas */
@@ -136,6 +152,7 @@ h2.recetas {
     padding: 1rem;
     box-shadow: 0 2px 6px rgba(0,0,0,0.05);
     transition: transform 0.2s, box-shadow 0.2s; /* Animación hover */
+    text-align: center;
     
 }
 
@@ -155,6 +172,7 @@ h2.recetas {
     margin-bottom: 0.5rem;
     font-size: 1.1rem;
     color: var(--color-base);
+    font-weight: bolder;
 }
 
 .card__contenido {
@@ -181,13 +199,16 @@ h2.recetas {
   background-color: #3ba637;
 }
 
+
+
 .sidebar {
   background: #ffffff;
   border: 2px dashed #92f68f; /* Borde punteado */
   border-radius: 10px;
   margin: 0.8em;
-  padding: 1em;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  padding: 1.5em;
+  font-family: poppins;
+  text-align: justify;
 }
 
 .sidebar h3 {
@@ -212,27 +233,39 @@ h2.recetas {
 .foto-chef {
   width: 100%;
   height: auto;           /* Ajusta la altura automáticamente, para mantener la responsividad */
-  border-radius: 8px
+  border-radius: 8px;
   margin-bottom: 1rem;
 
 }
 .tarjeta-recetas {
   display: grid;                        /* Activa CSS Grid */
   grid-template-columns: repeat(3, 1fr);       /* 3 columnas: cada una de 1fracción */
-  gap: 0.8em;                            /* Espacio entre elementos */
+  gap: 0.2em;                            /* Espacio entre elementos */
   width: 100%;                        /* ✅ Asegura que el contenedor grid use el ancho completo */
-  padding: 3em;                       /* separa del borde lateral */
-  margin: 2em;      /* 👈 centra horizontalmente */
+  padding: 1em; 
+  padding-left: 3em;                      /* separa del borde lateral */
+  margin: 1em;      /* 👈 centra horizontalmente */
+  padding-top: 0.8em;
+  padding-bottom: 0.2em;
+}
+.card-title{
+  text-align: left;
+}
+
+.card-text{
+text-align: left;
 }
 
 .boton-receta {
   background-color: #4bc647;
   border: none;
   color: white;
-  padding: 0.5em 1em;
+  padding: 0.5em 1.5em;
   text-align: center;
+  display: inline-block; 
+  justify-content: center;  /* Centra horizontalmente */
+  align-items: center;      /* Centra verticalmente */
   text-decoration: none;
-  display: inline-block;
   font-size: 1rem;
   margin-top: 0.5rem; /* 🔧 Separación del texto */
   border-radius: 4px;
@@ -254,7 +287,7 @@ h2.recetas {
 }
 
 .mas-populares{
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: poppins;
   color: #4bc647;
   text-align: left;
   padding: 0em 0em 0em 2em;
@@ -298,7 +331,7 @@ footer {
   margin-bottom: 3rem;
   padding-bottom: 1rem;
   border-bottom: 1px solid #eee;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-family: poppins; 
 }
 
 
@@ -347,8 +380,8 @@ footer {
   }
 
   header {
-    min-height: 150px;
-    padding: 1.5rem 1rem;
+    min-height: 80px;
+    padding: 0.5;
   }
 
   .title {
